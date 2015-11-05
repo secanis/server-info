@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="server-manager">
+    <head>
+        <title>server-info {{hardware.id}}</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" type="image/ico" href="/img/favicon.ico"/>
+        <!-- stylesheets -->
+        <link rel="stylesheet" href="css/skeleton.css">
+        <link rel="stylesheet" href="js/angular-busy/angular-busy.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <!-- javasript -->
+        <script src="node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="node_modules/angular/angular.min.js"></script>
+        <script src="node_modules/angular-ui-router/build/angular-ui-router.min.js"></script>
+        <script src="node_modules/angular-timeout/dist/angular-timeout.min.js"></script>
+        <script src="node_modules/angular-svg-round-progressbar/build/roundProgress.min.js"></script>
+        <script src="js/angular-busy/angular-busy.min.js"></script>
+        <!-- component -->
+        <script src="app/app.js"></script>
+        <script src="app/home/home.controller.js"></script>
+    </head>
+    <body>
+        <!-- angularjs views -->
+        <div ui-view=""></div>
+    </body>
+</html>

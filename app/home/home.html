@@ -1,0 +1,131 @@
+<div cg-busy="{promise:loading,message:'',templateUrl:'/app/busy.template.html'}">
+<button class="button u-pull-right" ng-click="initialLoad()">refresh</button><br>
+    <section class="container">
+        <h3 class="text-center">Server: {{hardware.id}}</h3><hr>
+        <article class="row">
+            <div class="two columns fg-white">.</div>
+            <div class="three columns">
+                <div class="progress-wrapper" ng-style="{'font-size': getFontSize()}">
+                    <div class="progress">{{sensors.cpu_temperature}}°C</div>
+                    <div round-progress
+                        max="100"
+                        responsive="true"
+                        current="sensors.cpu_temperature"
+                        color="#45ccce"
+                        bgcolor="#eaeaea"
+                        radius="100"
+                        stroke="10"
+                        responsive="false"
+                        animation="easeInOutQuart">
+                    </div>
+                </div>
+                <p class="text-center"><i>CPU Temperature</i></p>
+            </div>
+            <div class="two columns fg-white">.</div>
+            <div class="three columns">
+                <div class="progress-wrapper" ng-style="{'font-size': getFontSize()}">
+                    <div class="progress">{{sensors.case_temperature}}°C</div>
+                    <div round-progress
+                        max="100"
+                        responsive="true"
+                        current="sensors.case_temperature"
+                        color="#45ccce"
+                        bgcolor="#eaeaea"
+                        radius="100"
+                        stroke="10"
+                        responsive="false"
+                        animation="easeInOutQuart">
+                    </div>
+                </div>
+                <p class="text-center"><i>CASE Temperature</i></p>
+            </div>
+            <div class="two columns fg-white">.</div>
+        </article><hr><br>
+        <article class="row">
+            <div class="six columns">
+                <h4>Server Information</h4>
+                <table class="u-full-width">
+                    <tr><td>server name</td><td>{{metadata.SERVER_NAME}}</td></tr>
+                    <tr><td>document root</td><td>{{metadata.DOCUMENT_ROOT}}</td></tr>
+                    <tr><td>server admin</td><td>{{metadata.SERVER_ADMIN}}</td></tr>
+                    <tr><td>server software</td><td>{{metadata.SERVER_SOFTWARE}}</td></tr>
+                    <tr><td>server address</td><td>{{metadata.SERVER_ADDR}}</td></tr>
+                    <tr><td>server port</td><td>{{metadata.SERVER_PORT}}</td></tr>
+                    <tr><td>server protocol</td><td>{{metadata.SERVER_PROTOCOL}}</td></tr>
+                </table>
+            </div>
+            <div class="six columns">
+                <h4>Server Partitions</h4>
+                <table class="u-full-width">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Size</th>
+                            <th>Type</th>
+                            <th>Mountpoint</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="p in partition">
+                            <td>{{p.name}}</td>
+                            <td>{{p.size}}</td>
+                            <td>{{p.type}}</td>
+                            <td>{{p.mountpoint}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </article><br>
+        <h4>Filesystem</h4>
+        <article class="row">
+            <div class="twelve columns">
+                <table class="u-full-width">
+                    <thead>
+                        <tr>
+                            <th>Filesystem</th>
+                            <th class="text-right">Size</th>
+                            <th class="text-right">Used</th>
+                            <th class="text-right">Available</th>
+                            <th class="text-right">Use in %</th>
+                            <th>Mounted on</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="f in filesystem">
+                            <td>{{f.filesystem}}</td>
+                            <td class="text-right">{{(f.kblocks / 1024) / 1024 | number:2}} GB</td>
+                            <td class="text-right">{{(f.used / 1024) / 1024 | number:2}} GB</td>
+                            <td class="text-right">{{(f.available / 1024) / 14024 | number:2}} GB</td>
+                            <td class="text-right">{{f.usePrecentage}}</td>
+                            <td>{{f.mountpoint}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </article><br>
+        <h4>Hardware</h4>
+        <article class="row">
+            <div class="six columns">
+                <table class="u-full-width">
+                    <tbody>
+                        <tr><td>CPU</td><td>{{hardware.children[0].children[1].product}}</td></tr>
+                        <tr><td>RAM</td><td>{{((hardware.children[0].children[0].size / 1024) / 1024) | number: 0}} MB</td></tr>
+                        <tr><td>GPU</td><td>{{hardware.children[0].children[2].children[0].product}}</td></tr>
+                        <tr><td>SATA</td><td>{{hardware.children[0].children[2].children[1].product}}</td></tr>
+                        <tr><td>USB</td><td>{{hardware.children[0].children[2].children[2].product}}</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="six columns"></div>
+        </article><hr>
+        <article class="row">
+            <div class="four columns fg-white">.</div>
+            <div class="four columns text-center">
+                <span>webdesign - developed in switzerland</span><br>
+                <span>2013 - 2015 - all rights reserved.</span><br>
+                <a href="//secanis.ch">by secanis.ch</a>
+            </div>
+            <div class="four columns fg-white">.</div>
+        </article>
+    </section>
+</div>
